@@ -1,18 +1,18 @@
 :root {
-  --bg: #030712;
-  --panel: rgba(8, 18, 36, 0.82);
-  --panel-strong: rgba(9, 23, 47, 0.96);
-  --line: rgba(70, 184, 255, 0.42);
+  --bg: #ffffff;
+  --panel: #ffffff;
+  --panel-strong: #ffffff;
+  --line: rgba(0, 0, 0, 0.18);
   --line-hot: #24d8ff;
-  --text: #f4f8ff;
-  --muted: #94a9c6;
+  --text: #000000;
+  --muted: #333333;
   --blue: #00b7ff;
   --blue-deep: #0a3b92;
   --gold: #f6c85f;
   --gold-hot: #ffd166;
   --danger: #ff5f77;
   --success: #4df0a4;
-  --shadow: 0 22px 70px rgba(0, 0, 0, 0.45);
+  --shadow: none;
 }
 
 * {
@@ -25,7 +25,7 @@ body {
   min-height: 100%;
   margin: 0;
   background: var(--bg);
-  color: var(--text);
+  color: #000000;
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
@@ -49,10 +49,7 @@ button {
   align-items: center;
   justify-content: center;
   padding: 8px;
-  background:
-    radial-gradient(circle at 50% -10%, rgba(0, 183, 255, 0.24), transparent 34%),
-    radial-gradient(circle at 15% 85%, rgba(246, 200, 95, 0.14), transparent 28%),
-    #01040c;
+  background: #ffffff;
 }
 
 .developer-credit {
@@ -407,8 +404,8 @@ button:hover {
 .player-slot:hover .player-name,
 .player-list li:hover span,
 .participants-grid li:hover span {
-  color: #ffffff;
-  text-shadow: 0 0 12px rgba(36, 216, 255, 0.45);
+  color: #000000;
+  text-shadow: none;
 }
 
 .player-slot:last-child {
@@ -419,7 +416,7 @@ button:hover {
   min-width: 0;
   padding: 0 8px;
   overflow: hidden;
-  color: rgba(244, 248, 255, 0.92);
+  color: #000000;
   font-size: clamp(8px, 0.74vw, 14px);
   font-weight: 800;
   text-overflow: ellipsis;
@@ -442,12 +439,12 @@ button:hover {
 
 .player-slot.is-winner .player-name,
 .player-slot.is-winner .player-score {
-  color: #fff8dc;
-  text-shadow: 0 0 12px rgba(246, 200, 95, 0.4);
+  color: #000000;
+  text-shadow: none;
 }
 
 .player-slot.is-empty .player-name {
-  color: rgba(148, 169, 198, 0.58);
+  color: #000000;
   font-weight: 700;
 }
 
@@ -754,6 +751,7 @@ button:hover {
   min-width: 0;
   padding: 8px 14px;
   overflow: visible;
+  color: #000000;
   font-size: clamp(14px, 1.18vw, 22px);
   font-weight: 900;
   line-height: 1.12;
@@ -961,6 +959,10 @@ input:focus {
 
 .player-list b {
   color: var(--line-hot);
+}
+
+.player-list span {
+  color: #000000;
 }
 
 .remove-player {
@@ -1177,4 +1179,100 @@ input:focus {
   .participants-grid {
     grid-template-columns: 1fr;
   }
+}
+
+html,
+body,
+.app-shell,
+.stage,
+.score-strip article,
+.round-title,
+.match,
+.champion-match,
+.champion-spotlight,
+.champion-card,
+.draw-overlay,
+.draw-pulse,
+.participants-backdrop,
+.participants-sheet,
+.player-slot,
+.player-slot:hover,
+.player-slot.is-winner,
+.participants-grid li,
+.participants-grid b,
+.admin-backdrop,
+.admin-drawer,
+.tab,
+input,
+.primary-button,
+.draw-button,
+.ghost-button,
+.player-list li,
+.history-list li,
+.match-control-card,
+.winner-button,
+.correction-button,
+.icon-button,
+.draw-top-button,
+.presentation .round.is-focus .round-title {
+  background: #ffffff;
+  background-image: none;
+  box-shadow: none;
+}
+
+.tech-grid,
+.light-field,
+.participants-sheet::before,
+.player-slot::after,
+.player-list li::after,
+.participants-grid li::after {
+  display: none;
+}
+
+body,
+.developer-credit,
+.developer-credit a,
+.eyebrow,
+h1,
+h2,
+p,
+.icon-button,
+.primary-button,
+.draw-button,
+.ghost-button,
+.winner-button,
+.close-button,
+.tab,
+.score-strip span,
+.score-strip strong,
+.round-title,
+.player-name,
+.player-slot:hover .player-name,
+.player-slot.is-winner .player-name,
+.player-slot.is-empty .player-name,
+.player-score,
+.champion-inner strong,
+.champion-inner p,
+.champion-card h2,
+.champion-card p,
+.draw-overlay strong,
+.participants-head h2,
+.participants-grid b,
+.participants-grid span,
+.player-form label,
+input,
+.player-list-head span,
+.player-list b,
+.player-list span,
+.history-list strong,
+.history-list span,
+.match-controls-head span,
+.match-control-title strong,
+.versus b,
+.versus small,
+.correction-button,
+.empty-state,
+.presentation .round.is-focus .round-title {
+  color: #000000;
+  text-shadow: none;
 }
