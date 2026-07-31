@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Torneio de Damas - 78 Anos PIB Gravatá</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app-shell">
+    <section class="stage" id="stage">
+      <div class="tech-grid"></div>
+      <div class="light-field"></div>
+
+      <header class="topbar" id="topbar">
+        <div>
+          <p class="eyebrow">PLAYOFFS - 32 JOGADORES</p>
+          <h1>TORNEIO DE DAMAS - 78 ANOS PIB GRAVATÁ</h1>
+        </div>
+        <div class="top-actions">
+          <button class="icon-button draw-top-button" id="mainDrawBtn" type="button" title="Sortear confrontos">
+            <span>🎲</span>
+            <strong>Sortear</strong>
+          </button>
+          <button class="icon-button" id="participantsOpenBtn" type="button" title="Ver participantes">
+            <span>☷</span>
+            <strong>Participantes</strong>
+          </button>
+          <button class="icon-button" id="fullscreenBtn" type="button" title="Tela cheia">
+            <span>⛶</span>
+            <strong>Tela cheia</strong>
+          </button>
+          <button class="icon-button admin-open" id="adminOpenBtn" type="button" title="Administração">
+            <span>⚙</span>
+            <strong>Administração</strong>
+          </button>
+        </div>
+      </header>
+
+      <section class="score-strip" id="scoreStrip">
+        <article>
+          <span>Jogadores</span>
+          <strong id="registeredCount">0/32</strong>
+        </article>
+        <article>
+          <span>Partidas definidas</span>
+          <strong id="completedCount">0</strong>
+        </article>
+        <article>
+          <span>Status</span>
+          <strong id="tournamentStatus">Cadastro</strong>
+        </article>
+      </section>
+
+      <section class="bracket-wrap" aria-label="Chaveamento do torneio">
+        <div class="bracket" id="bracket"></div>
+      </section>
+
+      <section class="champion-spotlight" id="championSpotlight" aria-live="polite">
+        <div class="champion-card">
+          <h2 id="championName">Aguardando final</h2>
+          <p>CAMPEÃO DO TORNEIO</p>
+          <span class="champion-trophy">🏆</span>
+        </div>
+      </section>
+
+      <div class="draw-overlay" id="drawOverlay">
+        <div class="draw-pulse">🎲</div>
+        <strong>SORTEANDO...</strong>
+      </div>
+
+      <canvas class="confetti" id="confettiCanvas"></canvas>
+    </section>
+    <footer class="developer-credit">
+      Página desenvolvida por
+      <a href="https://portfoliokevenmatheus.vercel.app/" target="_blank" rel="noopener noreferrer">
+        Keven Matheus, Desenvolvedor
+      </a>
+    </footer>
+  </main>
+
+  <section class="participants-page" id="participantsPage" aria-hidden="true">
+    <div class="participants-backdrop" id="participantsBackdrop"></div>
+    <div class="participants-sheet" role="dialog" aria-modal="true" aria-labelledby="participantsTitle">
+      <header class="participants-head">
+        <div>
+          <p class="eyebrow">Lista oficial</p>
+          <h2 id="participantsTitle">Participantes do Torneio</h2>
+        </div>
+        <button class="close-button" id="participantsCloseBtn" type="button" title="Fechar">×</button>
+      </header>
+      <ol class="participants-grid" id="participantsGrid"></ol>
+    </div>
+  </section>
+
+  <aside class="admin-panel" id="adminPanel" aria-hidden="true">
+    <div class="admin-backdrop" id="adminBackdrop"></div>
+    <div class="admin-drawer" role="dialog" aria-modal="true" aria-labelledby="adminTitle">
+      <div class="drawer-head">
+        <div>
+          <p class="eyebrow">Controle do torneio</p>
+          <h2 id="adminTitle">Administração</h2>
+        </div>
+        <button class="close-button" id="adminCloseBtn" type="button" title="Fechar">×</button>
+      </div>
+
+      <nav class="admin-tabs" aria-label="Seções administrativas">
+        <button class="tab is-active" data-tab="players" type="button">Jogadores</button>
+        <button class="tab" data-tab="matches" type="button">Partidas</button>
+        <button class="tab" data-tab="history" type="button">Histórico</button>
+      </nav>
+
+      <section class="tab-panel is-active" data-panel="players">
+        <form class="player-form" id="playerForm">
+          <label for="playerName">Nome do jogador</label>
+          <div class="input-row">
+            <input id="playerName" maxlength="34" placeholder="Digite o nome" autocomplete="off">
+            <button class="primary-button" type="submit">Adicionar jogador</button>
+          </div>
+        </form>
+
+        <div class="admin-actions">
+          <button class="draw-button" id="drawBtn" type="button">🎲 Sortear confrontos</button>
+          <button class="ghost-button" id="resetBtn" type="button">Reiniciar campeonato</button>
+        </div>
+
+        <div class="player-list-head">
+          <strong>Participantes</strong>
+          <span id="playerLimit">0 de 32</span>
+        </div>
+        <ol class="player-list" id="playerList"></ol>
+      </section>
+
+      <section class="tab-panel" data-panel="matches">
+        <div class="match-controls-head">
+          <div>
+            <strong>Controle das partidas</strong>
+            <span>Escolha o vencedor para avançar automaticamente.</span>
+          </div>
+          <button class="ghost-button compact" id="redrawBtn" type="button">Refazer sorteio</button>
+        </div>
+        <div class="match-control-list" id="matchControlList"></div>
+      </section>
+
+      <section class="tab-panel" data-panel="history">
+        <div class="history-head">
+          <strong>Histórico dos campeões</strong>
+          <button class="ghost-button compact" id="clearHistoryBtn" type="button">Limpar histórico</button>
+        </div>
+        <ul class="history-list" id="historyList"></ul>
+      </section>
+    </div>
+  </aside>
+
+  <script src="script.js"></script>
+</body>
+</html>

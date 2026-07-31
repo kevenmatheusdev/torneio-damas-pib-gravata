@@ -1,0 +1,5 @@
+tournament-state.json
+.DS_Store
+.vercel
+node_modules
+npm-debug.log*
