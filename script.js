@@ -413,12 +413,7 @@ function renderStats() {
 
 function renderChampion() {
   els.championName.textContent = state.champion || "Aguardando final";
-  els.championSpotlight.classList.toggle("is-visible", Boolean(state.champion));
-  if (state.champion) {
-    launchConfetti();
-  } else {
-    stopConfetti();
-  }
+  if (!state.champion) hideChampionCelebration();
 }
 
 function renderHistory() {
@@ -506,7 +501,7 @@ function classifyWinner(roundIndex, matchIndex, playerIndex) {
     state.champion = winner;
     recordChampion(winner);
     render();
-    launchConfetti();
+    showChampionCelebration();
     return;
   }
 
@@ -583,6 +578,7 @@ function clearBracket(keepPlayers = true) {
 function resetTournament() {
   if (!confirm("Reiniciar o campeonato atual? O histórico de campeões será mantido.")) return;
   clearBracket(true);
+  hideChampionCelebration();
   render();
 }
 
@@ -665,6 +661,17 @@ function stopConfetti() {
   const canvas = els.confettiCanvas;
   const ctx = canvas.getContext("2d");
   ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+function showChampionCelebration() {
+  if (!state.champion) return;
+  els.championSpotlight.classList.add("is-visible");
+  launchConfetti();
+}
+
+function hideChampionCelebration() {
+  els.championSpotlight.classList.remove("is-visible");
+  stopConfetti();
 }
 
 function toggleAdmin(show) {
