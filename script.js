@@ -458,7 +458,7 @@ function addPlayer(name) {
 function removePlayer(index) {
   if (state.drawn && !confirm("Remover um jogador vai limpar o sorteio atual. Continuar?")) return;
   state.players.splice(index, 1);
-  clearBracket(false);
+  clearBracket(true);
   render();
 }
 
